@@ -1,4 +1,6 @@
-package sinalizaai.sinalizaai_back.domain.cliente;
+package sinalizaai.sinalizaai_back.dto;
+
+import sinalizaai.sinalizaai_back.domain.cliente.Cliente;
 
 import java.time.LocalDateTime;
 

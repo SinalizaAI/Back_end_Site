@@ -1,4 +1,4 @@
-package sinalizaai.sinalizaai_back.domain.cliente;
+package sinalizaai.sinalizaai_back.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,9 +1,9 @@
-package sinalizaai.sinalizaai_back.domain.cliente.services;
+package sinalizaai.sinalizaai_back.service;
 
-import sinalizaai.sinalizaai_back.domain.cliente.CadastroClienteDTO;
+import sinalizaai.sinalizaai_back.dto.CadastroClienteDTO;
 import sinalizaai.sinalizaai_back.domain.cliente.Cliente;
 import sinalizaai.sinalizaai_back.domain.cliente.ClienteRepository;
-import sinalizaai.sinalizaai_back.domain.cliente.ClienteResponseDTO;
+import sinalizaai.sinalizaai_back.dto.ClienteResponseDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -1,9 +1,9 @@
-package sinalizaai.sinalizaai_back.domain.cliente.services;
+package sinalizaai.sinalizaai_back.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sinalizaai.sinalizaai_back.domain.cliente.LoginDTO;
+import sinalizaai.sinalizaai_back.dto.LoginDTO;
 
 @RestController
 @RequestMapping("/api/auth")

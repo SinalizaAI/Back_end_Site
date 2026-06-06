@@ -1,11 +1,12 @@
-package sinalizaai.sinalizaai_back.domain.cliente.services;
+package sinalizaai.sinalizaai_back.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sinalizaai.sinalizaai_back.domain.cliente.CadastroClienteDTO;
-import sinalizaai.sinalizaai_back.domain.cliente.ClienteResponseDTO;
+import sinalizaai.sinalizaai_back.dto.CadastroClienteDTO;
+import sinalizaai.sinalizaai_back.dto.ClienteResponseDTO;
+import sinalizaai.sinalizaai_back.service.ClienteService;
 
 import java.util.List;
 
