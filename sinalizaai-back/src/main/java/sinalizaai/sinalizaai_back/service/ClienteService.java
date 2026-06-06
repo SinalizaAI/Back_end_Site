@@ -1,5 +1,6 @@
 package sinalizaai.sinalizaai_back.service;
 
+import sinalizaai.sinalizaai_back.dto.AtualizacaoClienteDTO;
 import sinalizaai.sinalizaai_back.dto.CadastroClienteDTO;
 import sinalizaai.sinalizaai_back.domain.cliente.Cliente;
 import sinalizaai.sinalizaai_back.domain.cliente.ClienteRepository;
@@ -65,5 +66,22 @@ public class ClienteService {
         var cliente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
         cliente.desativar();
+    }
+
+    //Atualizar dados
+    @Transactional
+    public ClienteResponseDTO atualizar(Long id, AtualizacaoClienteDTO dto) {
+        var cliente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+        // Verifica se o novo e-mail já pertence a outro cliente
+        if (dto.email() != null && !dto.email().equals(cliente.getEmail())) {
+            if (repository.existsByEmail(dto.email())) {
+                throw new RuntimeException("E-mail já está em uso");
+            }
+        }
+
+        cliente.atualizar(dto, passwordEncoder);
+        return new ClienteResponseDTO(cliente);
     }
 }

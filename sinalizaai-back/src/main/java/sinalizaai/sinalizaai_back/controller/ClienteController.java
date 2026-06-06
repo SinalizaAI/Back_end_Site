@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sinalizaai.sinalizaai_back.dto.AtualizacaoClienteDTO;
 import sinalizaai.sinalizaai_back.dto.CadastroClienteDTO;
 import sinalizaai.sinalizaai_back.dto.ClienteResponseDTO;
 import sinalizaai.sinalizaai_back.service.ClienteService;
@@ -44,5 +45,14 @@ public class ClienteController {
         public ResponseEntity<Void> desativar(@PathVariable Long id) {
             service.desativar(id);
             return ResponseEntity.noContent().build();
+        }
+
+        // PUT /api/clientes/{id} atualizar dados
+        @PutMapping("/{id}")
+        public ResponseEntity<ClienteResponseDTO> atualizar(
+                @PathVariable Long id,
+                @RequestBody @Valid AtualizacaoClienteDTO dto) {
+
+            return ResponseEntity.ok(service.atualizar(id, dto));
         }
     }

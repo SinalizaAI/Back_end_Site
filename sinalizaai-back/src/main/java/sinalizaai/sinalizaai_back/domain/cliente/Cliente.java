@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import sinalizaai.sinalizaai_back.dto.AtualizacaoClienteDTO;
+
 import java.time.LocalDateTime;
 
 @Table(name = "clientes")
@@ -63,5 +66,13 @@ public class Cliente {
     // Soft delete — não apaga do banco, só desativa
     public void desativar() {
         this.ativo = false;
+    }
+
+    public void atualizar(AtualizacaoClienteDTO dto, BCryptPasswordEncoder encoder) {
+        if (dto.razaoSocial() != null)    this.razaoSocial    = dto.razaoSocial();
+        if (dto.nomeResponsavel() != null) this.nomeResponsavel = dto.nomeResponsavel();
+        if (dto.email() != null)          this.email          = dto.email();
+        if (dto.telefone() != null)       this.telefone       = dto.telefone();
+        if (dto.senha() != null)          this.senhaHash      = encoder.encode(dto.senha());
     }
 }
