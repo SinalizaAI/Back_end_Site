@@ -1,13 +1,13 @@
-package com.sinalizaai.site;
+package sinalizaai.sinalizaai_back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SinalizaaiSiteBackendApplication {
+public class SinalizaaiBackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SinalizaaiSiteBackendApplication.class, args);
+		SpringApplication.run(SinalizaaiBackApplication.class, args);
 	}
 
 }

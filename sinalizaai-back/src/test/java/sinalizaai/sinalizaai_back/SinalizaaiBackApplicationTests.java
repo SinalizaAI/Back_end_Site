@@ -1,10 +1,10 @@
-package com.sinalizaai.site;
+package sinalizaai.sinalizaai_back;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SinalizaaiSiteBackendApplicationTests {
+class SinalizaaiBackApplicationTests {
 
 	@Test
 	void contextLoads() {
