@@ -1,5 +1,7 @@
 package sinalizaai.sinalizaai_back.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import sinalizaai.sinalizaai_back.service.TokenService;
 
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Autorização", description = "Autorização do sistema SinalizaAI")
 @CrossOrigin(origins = "*")
 public class AuthController {
 
@@ -24,6 +27,8 @@ public class AuthController {
 
     // POST /api/auth/login
     @PostMapping("/login")
+    @Operation(summary = "Login no sistema",
+            description = "Entre com seu cadastro de cliente para obter seu token de acesso ao sistema")
     public ResponseEntity<TokenResponseDTO> login(
             @RequestBody @Valid LoginDTO dto) {
 
