@@ -5,10 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import sinalizaai.sinalizaai_back.dto.AtualizacaoClienteDTO;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "clientes")
 @Entity(name = "Cliente")
@@ -16,7 +21,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Cliente {
+public class Cliente implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,5 +79,40 @@ public class Cliente {
         if (dto.email() != null)          this.email          = dto.email();
         if (dto.telefone() != null)       this.telefone       = dto.telefone();
         if (dto.senha() != null)          this.senhaHash      = encoder.encode(dto.senha());
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_CLIENTE"));
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senhaHash; // Spring Security usa esse método para validar a senha
+    }
+
+    @Override
+    public String getUsername() {
+        return this.getEmail();  // usamos e-mail como identificador de login
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.ativo;
     }
 }
