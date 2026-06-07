@@ -1,5 +1,6 @@
 package sinalizaai.sinalizaai_back.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ public class ClienteController {
 
         // POST /api/clientes/cadastro
         @PostMapping("/cadastro")
+        @Operation(summary = "Cadastrar cliente",
+                description = "Cria um novo cliente no sistema")
         public ResponseEntity<ClienteResponseDTO> cadastrar(
                 @RequestBody @Valid CadastroClienteDTO dto) {
 

@@ -35,6 +35,11 @@ public class SecurityConfig {
                         // Rotas públicas — não precisam de token
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/clientes/cadastro").permitAll()
+                        .requestMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll() //Swagger liberado
 
                         // Todas as outras exigem token
                         .anyRequest().authenticated()
