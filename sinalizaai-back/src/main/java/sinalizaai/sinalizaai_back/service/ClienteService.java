@@ -1,5 +1,6 @@
 package sinalizaai.sinalizaai_back.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import sinalizaai.sinalizaai_back.dto.AtualizacaoClienteDTO;
 import sinalizaai.sinalizaai_back.dto.CadastroClienteDTO;
 import sinalizaai.sinalizaai_back.domain.cliente.Cliente;
@@ -25,11 +26,11 @@ public class ClienteService {
     public ClienteResponseDTO cadastrar(CadastroClienteDTO dto) {
 
         if (repository.existsByEmail(dto.email())) {
-            throw new RuntimeException("E-mail já cadastrado");
+            throw new EntityNotFoundException("E-mail já cadastrado");
         }
 
         if (repository.existsByCnpj(dto.cnpj())) {
-            throw new RuntimeException("CNPJ já cadastrado");
+            throw new EntityNotFoundException("CNPJ já cadastrado");
         }
 
         var cliente = new Cliente(
@@ -56,7 +57,7 @@ public class ClienteService {
     // Buscar cliente por ID
     public ClienteResponseDTO buscarPorId(Long id) {
         var cliente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
         return new ClienteResponseDTO(cliente);
     }
 
@@ -64,7 +65,7 @@ public class ClienteService {
     @Transactional
     public void desativar(Long id) {
         var cliente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
         cliente.desativar();
     }
 
@@ -72,7 +73,7 @@ public class ClienteService {
     @Transactional
     public ClienteResponseDTO atualizar(Long id, AtualizacaoClienteDTO dto) {
         var cliente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
 
         // Verifica se o novo e-mail já pertence a outro cliente
         if (dto.email() != null && !dto.email().equals(cliente.getEmail())) {
