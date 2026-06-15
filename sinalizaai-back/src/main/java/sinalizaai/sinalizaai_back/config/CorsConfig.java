@@ -17,7 +17,8 @@ public class CorsConfig {
 
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",  // React com Create React App
-                "http://localhost:5173"   // React com Vite
+                "http://localhost:5173", // React com Vite
+                "https://www.sinalizaai.com"
         ));
 
         config.setAllowedMethods(List.of(
