@@ -19,7 +19,7 @@ public class CorsConfig {
                 "http://localhost:3000",  // React com Create React App
                 "http://localhost:5173", // React com Vite
                 "https://www.sinalizaai.com", // Site
-                "http://backendsite-production-2977.up.railway.app" // URL do backend no ar
+                "https://backendsite-production-2977.up.railway.app" // URL do backend no ar
         ));
 
         config.setAllowedMethods(List.of(
