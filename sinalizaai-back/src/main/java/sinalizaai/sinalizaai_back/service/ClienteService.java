@@ -61,12 +61,12 @@ public class ClienteService {
         return new ClienteResponseDTO(cliente);
     }
 
-    // Desativar cliente (soft delete)
+    // Deletar cliente (soft delete)
     @Transactional
-    public void desativar(Long id) {
+    public void deletar(Long id) {
         var cliente = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
-        cliente.desativar();
+        repository.delete(cliente);
     }
 
     //Atualizar dados

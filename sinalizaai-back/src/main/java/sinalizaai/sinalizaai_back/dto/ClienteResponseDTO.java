@@ -2,6 +2,7 @@ package sinalizaai.sinalizaai_back.dto;
 
 import sinalizaai.sinalizaai_back.domain.cliente.Cliente;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record ClienteResponseDTO(
@@ -11,6 +12,9 @@ public record ClienteResponseDTO(
         String nomeResponsavel,
         String email,
         String telefone,
+        String cidade,
+        String pais,
+        LocalDate dataNascimento,
         Boolean ativo,
         LocalDateTime criadoEm
 ) {
@@ -22,6 +26,9 @@ public record ClienteResponseDTO(
                 cliente.getNomeResponsavel(),
                 cliente.getEmail(),
                 cliente.getTelefone(),
+                cliente.getCidade(),
+                cliente.getPais(),
+                cliente.getDataNascimento(),
                 cliente.getAtivo(),
                 cliente.getCriadoEm()
         );

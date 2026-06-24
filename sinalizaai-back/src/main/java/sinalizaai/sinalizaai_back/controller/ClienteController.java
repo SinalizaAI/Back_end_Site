@@ -51,10 +51,10 @@ public class ClienteController {
 
         // DELETE /api/clientes/{id}
         @DeleteMapping("/{id}")
-        @Operation(summary = "Desativar clientes por ID",
-                description = "Desativa os clientes cadastrados no sistema pelo ID")
-        public ResponseEntity<Void> desativar(@PathVariable Long id) {
-            service.desativar(id);
+        @Operation(summary = "Deletar cliente por ID",
+                description = "Remove permanentemente o cliente do sistema pelo ID")
+        public ResponseEntity<Void> deletar(@PathVariable Long id) {
+            service.deletar(id);
             return ResponseEntity.noContent().build();
         }
 

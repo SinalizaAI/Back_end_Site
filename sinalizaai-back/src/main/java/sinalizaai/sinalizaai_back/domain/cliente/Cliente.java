@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import sinalizaai.sinalizaai_back.dto.AtualizacaoClienteDTO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -51,6 +52,15 @@ public class Cliente implements UserDetails {
     @Column(name = "criado_em", updatable = false)
     private LocalDateTime criadoEm;
 
+    @Column(length = 100)
+    private String cidade;
+
+    @Column(length = 100)
+    private String pais;
+
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
+
     @PrePersist
     public void prePersist() {
         this.criadoEm = LocalDateTime.now();
@@ -79,6 +89,9 @@ public class Cliente implements UserDetails {
         if (dto.email() != null)          this.email          = dto.email();
         if (dto.telefone() != null)       this.telefone       = dto.telefone();
         if (dto.senha() != null)          this.senhaHash      = encoder.encode(dto.senha());
+        if (dto.cidade() != null)           this.cidade           = dto.cidade();   // novo
+        if (dto.pais() != null)             this.pais             = dto.pais();     // novo
+        if (dto.dataNascimento() != null)   this.dataNascimento   = dto.dataNascimento();
     }
 
     @Override
